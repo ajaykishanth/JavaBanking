@@ -54,19 +54,19 @@ public class CountryResponseDTO {
 
 
 
-	public Boolean getIsActive() {
+	public boolean getIsActive() {
 		return isActive;
 	}
 
 
 
-	public void setIsActive(Boolean isActive) {
+	public void setIsActive(boolean isActive) {
 		this.isActive = isActive;
 	}
 
 
 	    // Constructor
-	    public CountryResponseDTO(Integer countryId, String countryName, String countryCode, Boolean isActive) {
+	    public CountryResponseDTO(Integer countryId, String countryName, String countryCode, boolean isActive) {
 	        this.countryId = countryId;
 	        this.countryName = countryName;
 	        this.countryCode = countryCode;

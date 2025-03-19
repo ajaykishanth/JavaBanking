@@ -8,7 +8,7 @@ public class CityResponseDTO {
 
     private Long cityId;
     private String cityName;
-    private Boolean isActive;
+    private boolean isActive;
     private Integer stateId;
     private String stateName;
 
@@ -46,7 +46,7 @@ public class CityResponseDTO {
         return isActive;
     }
 
-    public void setIsActive(Boolean isActive) {
+    public void setIsActive(boolean isActive) {
         this.isActive = isActive;
     }
 
