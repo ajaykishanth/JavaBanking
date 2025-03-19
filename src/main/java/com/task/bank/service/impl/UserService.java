@@ -31,7 +31,7 @@ public class UserService {
         return new UserResponse(user);
     }
 
-    //Search Users
+    //Search Users for phonenumber ande name
     public Page<UserResponse> searchUsers(String query, int pageNum, int pageSize) {
         return userRepository.findByFirstNameContainingOrLastNameContainingOrPhoneNumberContainingOrEmailContaining(
                 query, query, query, query, PageRequest.of(pageNum, pageSize))
