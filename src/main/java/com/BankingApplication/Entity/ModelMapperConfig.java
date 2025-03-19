@@ -1,6 +1,4 @@
-package com.task.bank.entity;
-
-
+package com.BankingApplication.Entity;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
