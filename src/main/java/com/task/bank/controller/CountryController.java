@@ -8,6 +8,9 @@ import com.task.bank.request.dto.CountryRequestDTO;
 import com.task.bank.response.dto.CountryResponseDTO;
 import com.task.bank.service.CountryService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +29,13 @@ public class CountryController {
 
     // Create
     @PostMapping("/country")
+    @Operation(summary="Post Method ",
+    			description="Post Method to create any country",
+    			responses= {
+    					@ApiResponse(responseCode="200",description="Succesone"),
+    					@ApiResponse(responseCode="400",description="Bad Operation"),
+    			}
+    )
     public ResponseEntity<CountryResponseDTO> createCountry(@RequestBody CountryRequestDTO countryRequestDTO) {
         return ResponseEntity.ok(countryService.createCountry(countryRequestDTO));
         
@@ -33,6 +43,13 @@ public class CountryController {
 
     // Read
     @GetMapping("/all")
+    @Operation(summary="Get Method ",
+	description="Get Method to display all Countries",
+	responses= {
+			@ApiResponse(responseCode="200",description="Succesone"),
+			@ApiResponse(responseCode="400",description="Bad Operation"),
+	}
+)
     public ResponseEntity<List<CountryResponseDTO>> getAllCountries() {
         List<CountryResponseDTO> country =countryService.getAllCountries();
         if(country.isEmpty())
