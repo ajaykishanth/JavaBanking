@@ -74,7 +74,7 @@ public class City implements Serializable{
 			this.state = state;
 		}
 
-		public City() {
+		public City() { 
 			super();
 			 
 		}
