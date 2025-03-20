@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.task.bank.response.dto.CityResponseDTO;
 import com.task.bank.service.CityService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 @RestController
 @RequestMapping("/city")
 public class CityController {
@@ -23,7 +26,17 @@ public class CityController {
 		this.cityService =cityService;
 	}
 	
+	
+	
+	
 	@GetMapping("/by-state")
+    @Operation(summary="byState  ",
+	description="Method to get list of cities by State",
+	responses= {
+			@ApiResponse(responseCode="200",description="Succesone"),
+			@ApiResponse(responseCode="400",description="Bad Operation"),
+	}
+)
 	public ResponseEntity<?> getCities(@RequestParam String stateName) {
 	    if (stateName == null || stateName.isEmpty()) {
 	        return ResponseEntity.badRequest().body("Param cannot be empty");

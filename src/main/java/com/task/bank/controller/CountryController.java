@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.task.bank.exceptions.ResourceNotFoundException;
 import com.task.bank.request.dto.CountryRequestDTO;
 import com.task.bank.response.dto.CountryResponseDTO;
 import com.task.bank.service.CountryService;
@@ -59,10 +60,28 @@ public class CountryController {
         		return ResponseEntity.ok(country);
         	}     
     }
-
+    
+    //Get ById
     @GetMapping("/{id}")
-    public Optional<CountryResponseDTO> getCountryById(@PathVariable Integer id) {
-        return countryService.getCountryById(id);
+    @Operation(summary="Get Method ",
+	description="Get Method to display single country by ID",
+	responses= {
+			@ApiResponse(responseCode="200",description="Succesone"),
+			@ApiResponse(responseCode="400",description="Bad Operation"),
+	}
+    )
+    public ResponseEntity<CountryResponseDTO> getCountryById(@PathVariable Integer id) {
+    	if(id == null || id == 0) {
+        return ResponseEntity.badRequest().build();
+    }else {
+    	Optional<CountryResponseDTO> country =countryService.getCountryById(id);
+    	return  country.map(ResponseEntity::ok).orElseThrow(()->new ResourceNotFoundException("Dont have any country in this ID"));
+    	
     }
+    }
+    
+    
+    
+    
 }
 

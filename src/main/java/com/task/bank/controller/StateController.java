@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.task.bank.response.dto.StateResponseDTO;
 import com.task.bank.service.StateService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 @RestController
 @RequestMapping("/state")
 public class StateController {
@@ -30,6 +33,13 @@ public class StateController {
 	
 	
 	@GetMapping("/by-country")
+    @Operation(summary="byCountry  ",
+	description="Method to get list of States by Country",
+	responses= {
+			@ApiResponse(responseCode="200",description="Succesone"),
+			@ApiResponse(responseCode="400",description="Bad Operation"),
+	}
+)
 	public ResponseEntity<List<StateResponseDTO>>  getStateList(@RequestParam String countryname){
 		List<StateResponseDTO> stateList = stateService.getStateListByCountryName(countryname);
 		if(stateList.isEmpty()) {

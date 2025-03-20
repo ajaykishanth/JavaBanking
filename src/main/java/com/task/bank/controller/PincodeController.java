@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.task.bank.response.dto.PincodeResponseDTO;
 import com.task.bank.service.PincodeService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 @RestController
 @RequestMapping("/pincode")
 public class PincodeController {
@@ -24,6 +27,13 @@ public class PincodeController {
 	}
 	
 	@GetMapping("/by-city")
+    @Operation(summary="By City  ",
+	description="Method to get list of Pincode by City",
+	responses= {
+			@ApiResponse(responseCode="200",description="Succesone"),
+			@ApiResponse(responseCode="400",description="Bad Operation"),
+	}
+)
 	public ResponseEntity<?> getPincode(@RequestParam String cityName){
 		
 		if(cityName== null || cityName.isEmpty()){
