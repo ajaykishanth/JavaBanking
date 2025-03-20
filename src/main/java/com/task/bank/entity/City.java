@@ -1,7 +1,6 @@
 package com.task.bank.entity;
 
 import java.io.Serializable;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,6 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Entity
 @Table(name="city")
 @Data
@@ -22,9 +22,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class City implements Serializable{
 	
-	 private static final long serialVersionUID = 1L; 
 
-	    @Id
+	private static final long serialVersionUID = 441924532915342228L;
+	
+	
+	
+
+		@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    @Column(name = "city_id")
 	    private Long cityId;

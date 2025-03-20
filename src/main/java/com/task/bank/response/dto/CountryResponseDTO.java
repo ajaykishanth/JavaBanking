@@ -1,15 +1,20 @@
 package com.task.bank.response.dto;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-
-//import lombok.Getter;
-//import lombok.Setter;
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class CountryResponseDTO {
 
 
 
-
+	@NotNull(message="Id should not be empty or null")
+	@Min(value=1,message="Id should be greated than 0")
 	private Integer countryId;
 	 private String countryName;
 	 private String countryCode;
@@ -17,71 +22,6 @@ public class CountryResponseDTO {
 	 
 	 
 	 
-
-	 public Integer getCountryId() {
-		return countryId;
-	}
-
-
-
-	public void setCountryId(Integer countryId) {
-		this.countryId = countryId;
-	}
-
-
-
-	public String getCountryName() {
-		return countryName;
-	}
-
-
-
-	public void setCountryName(String countryName) {
-		this.countryName = countryName;
-	}
-
-
-
-	public String getCountryCode() {
-		return countryCode;
-	}
-
-
-
-	public void setCountryCode(String countryCode) {
-		this.countryCode = countryCode;
-	}
-
-
-
-	public boolean getIsActive() {
-		return isActive;
-	}
-
-
-
-	public void setIsActive(boolean isActive) {
-		this.isActive = isActive;
-	}
-
-
-	    // Constructor
-	    public CountryResponseDTO(Integer countryId, String countryName, String countryCode, boolean isActive) {
-	        this.countryId = countryId;
-	        this.countryName = countryName;
-	        this.countryCode = countryCode;
-	        this.isActive = isActive;
-	    }
-
-
-
-		public CountryResponseDTO() {
-			super();
-		}
-	    
-	    
-	    
-	
 	    
 	    
 	

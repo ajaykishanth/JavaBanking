@@ -3,7 +3,6 @@ package com.task.bank.entity;
 
 
 import java.io.Serializable;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,10 +21,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Country implements Serializable{
 	
-	
-	 private static final long serialVersionUID = 1L; 
-	 
-	
+	private static final long serialVersionUID = -8068823080711647183L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name ="country_id")

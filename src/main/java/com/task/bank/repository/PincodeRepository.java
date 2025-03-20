@@ -1,4 +1,4 @@
-package com.task.bank.repo;
+package com.task.bank.repository;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import com.task.bank.entity.Pincode;
 
 @Repository
-public interface PincodeRepo extends JpaRepository<Pincode, Long>{
+public interface PincodeRepository extends JpaRepository<Pincode, Long>{
 
-	List<Pincode> findByCityCityName(String cityName);
+	List<Pincode> findByCityCityId(Long cityId);
 	
 }

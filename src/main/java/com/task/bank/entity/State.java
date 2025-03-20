@@ -13,6 +13,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+
 @Entity
 @Table(name="state")
 @Data
@@ -20,9 +21,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class State implements Serializable{
 	
-	 private static final long serialVersionUID = 1L; 
+	private static final long serialVersionUID = 2753621497245385692L;
 
-	    @Id
+		@Id
 	    @Column(name = "state_id")  // Column name in the table
 	    private Long stateId;
 

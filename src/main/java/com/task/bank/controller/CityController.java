@@ -1,35 +1,27 @@
 package com.task.bank.controller;
 
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.task.bank.response.dto.CityResponseDTO;
-import com.task.bank.service.CityService;
-
+import com.task.bank.service.impl.CityServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/city")
+@RequestMapping("/api/v1/city")
+@AllArgsConstructor
 public class CityController {
 
 	
-	private final CityService cityService;
+	private final CityServiceImpl cityService;
 	
-	@Autowired
-	public CityController(CityService cityService) {
-		this.cityService =cityService;
-	}
-	
-	
-	
-	
-	@GetMapping("/by-state")
+	@GetMapping("/state/{id}")
     @Operation(summary="byState  ",
 	description="Method to get list of cities by State",
 	responses= {
@@ -37,18 +29,9 @@ public class CityController {
 			@ApiResponse(responseCode="400",description="Bad Operation"),
 	}
 )
-	public ResponseEntity<?> getCities(@RequestParam String stateName) {
-	    if (stateName == null || stateName.isEmpty()) {
-	        return ResponseEntity.badRequest().body("Param cannot be empty");
-	    }
-
-	    List<CityResponseDTO> cities = cityService.getCitiesbyStateName(stateName);
-	    
-	    if (cities.isEmpty()) {
-	        return ResponseEntity.ok("No data");
-	    }
-	    
-	    return ResponseEntity.ok(cities);
+	public ResponseEntity<?> getCities(@Valid @PathVariable("id") Long stateId) {	    
+		   List<CityResponseDTO> cities = cityService.getCitiesbyStateId(stateId);
+		    return ResponseEntity.ok(cities);
 	}	
 	
 	

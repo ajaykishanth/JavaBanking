@@ -1,4 +1,4 @@
-package com.task.bank.repo;
+package com.task.bank.repository;
 
 import java.util.Optional;
 
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 import com.task.bank.entity.Country;
 
 @Repository
-public interface CountryRepo extends JpaRepository<Country, Integer>{
+public interface CountryRepository extends JpaRepository<Country, Integer>{
 	
 		
 	
-	  Optional<Country> findByCountryName(String countryName);
+	  Optional<Country> findByCountryId(Long countryId);
 }
