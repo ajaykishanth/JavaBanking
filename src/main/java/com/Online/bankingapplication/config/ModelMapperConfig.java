@@ -25,7 +25,7 @@ ModelMapper modelMapper = new ModelMapper();
         
         return modelMapper;
     	
-        
+        	
     }
     @Bean
     public OpenAPI bankingOpenAPI() {

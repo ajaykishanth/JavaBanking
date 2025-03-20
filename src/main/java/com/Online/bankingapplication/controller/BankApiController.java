@@ -5,19 +5,19 @@ import com.Online.bankingapplication.dto.response.BankResponse;
 import com.Online.bankingapplication.service.BankService;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/banks")
+@RequestMapping("/api/v1/banks")
+@AllArgsConstructor
 public class BankApiController {
 
     private final BankService bankService; 
-
-    public BankApiController(BankService bankService) {
-        this.bankService = bankService;
-    }
 
     @GetMapping("/{userId}")
     public BankResponse getBankDetails(@PathVariable String userId) {

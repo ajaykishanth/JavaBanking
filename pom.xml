@@ -84,7 +84,7 @@
         
         <dependency>
     <groupId>org.springdoc</groupId>
-    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId> <!-- swagger configuration-->
     <version>2.1.0</version> <!-- Check latest version -->
 </dependency>
         
