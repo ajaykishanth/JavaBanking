@@ -87,8 +87,15 @@
     <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId> <!-- swagger configuration-->
     <version>2.1.0</version> <!-- Check latest version -->
 </dependency>
-        
-        
+
+
+	<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId><!-- Bcrypt password-->
+</dependency>
+	
+		
+		        
     </dependencies>
 
     <build>

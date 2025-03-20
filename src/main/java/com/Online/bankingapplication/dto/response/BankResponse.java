@@ -14,4 +14,5 @@ public class BankResponse {
     private Boolean isDeleted;
     private String registrationDate;
     private String lastUpdatedDate;
+    private Long pincodeId; 
 }

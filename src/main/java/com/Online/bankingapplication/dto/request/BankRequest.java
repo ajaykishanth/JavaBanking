@@ -1,11 +1,13 @@
 package com.Online.bankingapplication.dto.request;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @Data
@@ -42,5 +44,17 @@ public class BankRequest {
     private Boolean isActive;
 
     @NotNull(message = "isDeleted field cannot be null")
-    private Boolean isDeleted;
+    private Boolean isDeleted = false;
+    
+    
+    @NotBlank(message = "Password cannot be blank")
+    private String password;
+    
+    //@NotNull(message = "Pincode cannot be blank")
+    private Long pincodeId;
+  
+    
+//    public void setPassword(String rawPassword) {
+//        this.password = new BCryptPasswordEncoder().encode(rawPassword); // Encrypt password
+//    }
 }

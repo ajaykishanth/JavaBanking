@@ -7,7 +7,8 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;  
+import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.Online.bankingapplication.dto.request.BankRequest;
@@ -18,6 +19,9 @@ import com.Online.bankingapplication.service.BankService;
 
 import lombok.AllArgsConstructor; 
 
+
+
+
 @Service
 @AllArgsConstructor
 public class BankServiceImpl implements BankService {  
@@ -25,9 +29,14 @@ public class BankServiceImpl implements BankService {
     private final BankRepository bankRepository;
     private final ModelMapper modelMapper;
     private static final Logger logger = LoggerFactory.getLogger(BankServiceImpl.class);
-
+    private final PasswordEncoder passwordEncoder;
+   // private BCryptPasswordEncoder encoder =new BCryptPasswordEncoder(12);
+    
+    
+    
     @Override
     public BankResponse createBank(BankRequest bankRequest) {
+    	
     	
     	 Optional<Bank> existingBank = bankRepository.findById(bankRequest.getUserId());
     	    
@@ -36,11 +45,17 @@ public class BankServiceImpl implements BankService {
     	        throw new RuntimeException("User with ID " + bankRequest.getUserId() + " already exists.");
     	    }
     	    
+    	   
         Bank bank = modelMapper.map(bankRequest, Bank.class);
+        if (bankRequest.getDateOfBirth() != null) {
+            bank.setDateOfBirth(bankRequest.getDateOfBirth());  // Explicitly setting
+        }
+        bank.setPassword(passwordEncoder.encode(bankRequest.getPassword()));
         bank.setIsActive(bankRequest.getIsActive() != null ? bankRequest.getIsActive() : true);
         bank.setIsDeleted(bankRequest.getIsDeleted() != null ? bankRequest.getIsDeleted() : false);
         bank.setRegistrationDate(LocalDate.now());
         bank.setLastUpdatedDate(LocalDate.now());
+        bank.getPincodeId(); 
         bankRepository.save(bank);
         logger.info("Bank account created for userId: {}", bank.getUserId());
         return modelMapper.map(bank, BankResponse.class);
@@ -53,6 +68,8 @@ public class BankServiceImpl implements BankService {
             Bank bank = optionalBank.get();
             modelMapper.map(bankRequest, bank);
             bank.setLastUpdatedDate(LocalDate.now());
+            bank.getPincodeId();
+            //bank.getPincode(); 
             bankRepository.save(bank);
             logger.info("Bank account updated for userId: {}", userId);
             return modelMapper.map(bank, BankResponse.class);
