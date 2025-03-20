@@ -14,19 +14,17 @@ import com.Online.bankingapplication.dto.request.BankRequest;
 import com.Online.bankingapplication.dto.response.BankResponse;
 import com.Online.bankingapplication.entity.Bank;
 import com.Online.bankingapplication.repository.BankRepository;
-import com.Online.bankingapplication.service.BankService; 
+import com.Online.bankingapplication.service.BankService;
+
+import lombok.AllArgsConstructor; 
 
 @Service
+@AllArgsConstructor
 public class BankServiceImpl implements BankService {  
 
     private final BankRepository bankRepository;
     private final ModelMapper modelMapper;
     private static final Logger logger = LoggerFactory.getLogger(BankServiceImpl.class);
-
-    public BankServiceImpl(BankRepository bankRepository, ModelMapper modelMapper) {
-        this.bankRepository = bankRepository;
-        this.modelMapper = modelMapper;
-    }
 
     @Override
     public BankResponse createBank(BankRequest bankRequest) {
