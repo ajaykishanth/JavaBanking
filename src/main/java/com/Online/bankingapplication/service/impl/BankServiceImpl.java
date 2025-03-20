@@ -29,15 +29,13 @@ public class BankServiceImpl implements BankService {
     @Override
     public BankResponse createBank(BankRequest bankRequest) {
     	
-    	
     	 Optional<Bank> existingBank = bankRepository.findById(bankRequest.getUserId());
     	    
     	    if (existingBank.isPresent() && !existingBank.get().getIsDeleted()) {
     	        logger.warn("User with userId {} already exists", bankRequest.getUserId());
     	        throw new RuntimeException("User with ID " + bankRequest.getUserId() + " already exists.");
     	    }
-    	
-    	
+    	    
         Bank bank = modelMapper.map(bankRequest, Bank.class);
         bank.setIsActive(bankRequest.getIsActive() != null ? bankRequest.getIsActive() : true);
         bank.setIsDeleted(bankRequest.getIsDeleted() != null ? bankRequest.getIsDeleted() : false);

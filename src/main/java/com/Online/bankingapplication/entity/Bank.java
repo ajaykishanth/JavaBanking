@@ -7,8 +7,6 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-
-
 @Entity
 @Table(name = "user_table")
 @Data
@@ -18,6 +16,7 @@ public class Bank {
     @Column(unique = true, nullable = false)
     private String userId;
 
+    @Column(unique = true, nullable = false)
     private String accountHolderName;
 
     @Column(nullable = false)
@@ -26,6 +25,7 @@ public class Bank {
     @Column(nullable = false)
     private String phoneNumber;
 
+    @Column(nullable = false)
     private String address;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
@@ -37,25 +37,17 @@ public class Bank {
     @Column(nullable = false)
     private Boolean isDeleted;
     
+    @Column(unique = true, nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
   private LocalDate registrationDate = LocalDate.now();
   
   
+    @Column(unique = true, nullable = false)
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
   private LocalDate lastUpdatedDate = LocalDate.now();
     
    
-  @PrePersist
-  protected void onCreate() {
-      if (this.isActive == null) {
-          this.isActive = true;
-      }
-      if (this.isDeleted == null) {
-          this.isDeleted = false;
-      }
-      this.registrationDate = LocalDate.now();
-      this.lastUpdatedDate = LocalDate.now();
-  }
+
   
   
 }
