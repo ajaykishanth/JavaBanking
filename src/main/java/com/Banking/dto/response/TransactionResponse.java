@@ -1,19 +1,16 @@
 package com.Banking.dto.response;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class TransactionResponse {
     private Long transactionId;
-    private Long accountId;  // ✅ Ensure this exists
-    private BigDecimal amount;
+    private Long accountId;  // This will be set from the associated UserAccount
     private String transactionType;
+    private BigDecimal amount;
     private String transactionStatus;
-    private LocalDateTime transactionDate;
 }

@@ -1,12 +1,12 @@
 package com.Banking.exception;
 
-public class ResourceNotFoundException extends RuntimeException {
+public class TransactionNotFoundException extends RuntimeException {
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public ResourceNotFoundException(String message) {
+	public TransactionNotFoundException(String message) {
         super(message);
     }
 }
