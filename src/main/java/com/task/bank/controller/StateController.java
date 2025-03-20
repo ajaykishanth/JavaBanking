@@ -33,6 +33,8 @@ public class StateController {
 )
 	public ResponseEntity<List<StateResponseDTO>>  getStateList(@Valid @PathVariable("id") Long countryId){
 		List<StateResponseDTO> stateList = stateService.getStateListByCountryId(countryId);
-		return ResponseEntity.ok(stateList);		
+		return stateList.isEmpty()
+				?ResponseEntity.notFound().build()
+						:ResponseEntity.ok(stateList);
 	}
 }

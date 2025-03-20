@@ -1,11 +1,16 @@
 package com.task.bank.service.impl;
 
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import com.task.bank.entity.Country;
 import com.task.bank.entity.State;
+import com.task.bank.repository.CountryRepository;
 import com.task.bank.repository.StateRepository;
 import com.task.bank.response.dto.StateResponseDTO;
 import com.task.bank.service.StateService;
@@ -18,11 +23,17 @@ public class StateServiceImpl implements StateService{
 	
 	
 	private final StateRepository stateRepo;
+	private final CountryRepository countryRepo;
 	private final ModelMapper modelMapper;
 
 	
 	
 	public List<StateResponseDTO> getStateListByCountryId(Long countryId){
+		
+		Optional<Country> country = countryRepo.findByCountryId(countryId);
+		if(country.isEmpty()) {
+			return new ArrayList<StateResponseDTO>();
+		}
 		
 		List<State> state = stateRepo.findByCountryCountryId(countryId);
 		return state.stream()

@@ -31,7 +31,10 @@ public class CityController {
 )
 	public ResponseEntity<?> getCities(@Valid @PathVariable("id") Long stateId) {	    
 		   List<CityResponseDTO> cities = cityService.getCitiesbyStateId(stateId);
-		    return ResponseEntity.ok(cities);
+		    return cities.isEmpty()
+		    		?ResponseEntity.notFound().build()
+		    			:ResponseEntity.ok(cities);
+		    		
 	}	
 	
 	
