@@ -1,4 +1,4 @@
-package com.task.bank.repo;
+package com.task.bank.repository;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Repository;
 import com.task.bank.entity.City;
 
 @Repository
-public interface CityRepo extends JpaRepository<City, Long>{
+public interface CityRepository extends JpaRepository<City, Long>{
 
 	
-	Optional<City> findByCityName(String cityName);
-	List<City> findByStateStateName(String stateName);
+	Optional<City> findByCityId(Long cityId);
+	List<City> findByStateStateId(Long stateId);
 	
 }

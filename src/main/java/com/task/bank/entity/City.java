@@ -1,7 +1,6 @@
 package com.task.bank.entity;
 
 import java.io.Serializable;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,14 +10,25 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 @Entity
 @Table(name="city")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class City implements Serializable{
 	
-	 private static final long serialVersionUID = 1L; 
 
-	    @Id
+	private static final long serialVersionUID = 441924532915342228L;
+	
+	
+	
+
+		@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    @Column(name = "city_id")
 	    private Long cityId;
@@ -34,50 +44,7 @@ public class City implements Serializable{
 	    @JoinColumn(name = "state_id",nullable =false)
 	    private State state;
 
-		public Long getCityId() {
-			return cityId;
-		}
 
-		public void setCityId(Long cityId) {
-			this.cityId = cityId;
-		}
-
-		public String getCityName() {
-			return cityName;
-		}
-
-		public void setCityName(String cityName) {
-			this.cityName = cityName;
-		}
-
-		public Boolean getIsActive() {
-			return isActive;
-		}
-
-		public void setIsActive(Boolean isActive) {
-			this.isActive = isActive;
-		}
-
-		public State getState() {
-			return state;
-		}
-
-		public void setState(State state) {
-			this.state = state;
-		}
-
-		public City(Long cityId, String cityName, Boolean isActive, State state) {
-			super();
-			this.cityId = cityId;
-			this.cityName = cityName;
-			this.isActive = isActive;
-			this.state = state;
-		}
-
-		public City() {
-			super();
-		}
-	    
 	    
 	    
 	    

@@ -1,41 +1,40 @@
 package com.task.bank.controller;
 
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.task.bank.response.dto.StateResponseDTO;
-import com.task.bank.service.StateService;
+import com.task.bank.service.impl.StateServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/state")
+@RequestMapping("/api/v1/state")
+@AllArgsConstructor
 public class StateController {
 	
 	
 	
-	private final StateService stateService;
-	
-	@Autowired
-	public StateController(StateService stateService) {
-		this.stateService =stateService;
-	}
-	
-	
+	private final StateServiceImpl stateService;
 
-	
-	
-	
-	@GetMapping("/by-country")
-	public ResponseEntity<List<StateResponseDTO>>  getStateList(@RequestParam String countryname){
-		List<StateResponseDTO> stateList = stateService.getStateListByCountryName(countryname);
-		if(stateList.isEmpty()) {
-			return ResponseEntity.noContent().build(); 
-		}
-		 return ResponseEntity.ok(stateList); 
-		
+
+	@GetMapping("/country/{id}")
+    @Operation(summary="byCountry  ",
+	description="Method to get list of States by Country",
+	responses= {
+			@ApiResponse(responseCode="200",description="Succesone"),
+			@ApiResponse(responseCode="400",description="Bad Operation"),
+	}
+)
+	public ResponseEntity<List<StateResponseDTO>>  getStateList(@Valid @PathVariable("id") Long countryId){
+		List<StateResponseDTO> stateList = stateService.getStateListByCountryId(countryId);
+		return stateList.isEmpty()
+				?ResponseEntity.notFound().build()
+						:ResponseEntity.ok(stateList);
 	}
 }
