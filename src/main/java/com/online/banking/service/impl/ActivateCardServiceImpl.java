@@ -64,10 +64,9 @@ public class ActivateCardServiceImpl implements ActivateCardService {
 
         // Validate PIN using BCrypt
         if (!passwordEncoder.matches(pin, card.getPin())) {
-            logger.warn("Incorrect PIN for card number: {}", cardNumber);
+            logger.warn("Incorrect PIN for card number: {}. Correct hashed PIN:{}", cardNumber,card.getPin());
             throw new InvalidPinException("Incorrect PIN");
         }
-
         // Check if the card is expired
         if (card.getExpiryDate().isBefore(LocalDate.now())) {
             logger.warn("Card has expired: {}", cardNumber);

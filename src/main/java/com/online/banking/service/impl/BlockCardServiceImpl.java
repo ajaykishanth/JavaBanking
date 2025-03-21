@@ -7,7 +7,6 @@ import com.online.banking.exception.CardExpiredException;
 import com.online.banking.repository.CardRepository;
 import com.online.banking.response.dto.BlockCardResponseDTO;
 import com.online.banking.service.BlockCardService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -16,8 +15,12 @@ import java.util.Optional;
 @Service
 public class BlockCardServiceImpl implements BlockCardService {
 
-    @Autowired
-    private CardRepository cardRepository;
+  
+    private final CardRepository cardRepository;
+    
+    public BlockCardServiceImpl(CardRepository cardRepository) {
+    	 this.cardRepository = cardRepository;
+    }
 
     @Override
     public BlockCardResponseDTO blockCard(Long cardId) {
