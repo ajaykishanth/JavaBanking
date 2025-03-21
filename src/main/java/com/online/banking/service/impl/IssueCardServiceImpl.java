@@ -13,8 +13,7 @@ import com.online.banking.service.IssueCardService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -28,11 +27,15 @@ public class IssueCardServiceImpl implements IssueCardService {
 
     private static final Logger logger = LoggerFactory.getLogger(IssueCardServiceImpl.class);
 
-    @Autowired
-    private CardRepository cardRepository;
+    private final CardRepository cardRepository;
+    private final UserAccountRepository userAccountRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    @Autowired
-    private UserAccountRepository userAccountRepository;
+    public IssueCardServiceImpl(CardRepository cardRepository, UserAccountRepository userAccountRepository, BCryptPasswordEncoder passwordEncoder) {
+        this.cardRepository = cardRepository;
+        this.userAccountRepository = userAccountRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public IssueCardResponseDTO issueCard(Long accountId) {
@@ -57,8 +60,10 @@ public class IssueCardServiceImpl implements IssueCardService {
 
         // Generate PIN and hash it
         String plainPin = generateRandomPin();
-        //String hashedPin = hashPin(plainPin);
-        String hashedPin = plainPin;
+        String hashedPin = hashPin(plainPin);
+        
+        logger.debug("Generated PIN: {} | Hashed PIN: {}", plainPin, hashedPin); 
+
         // Create new card object
         Card newCard = Card.builder()
                 .accountId(accountId)
@@ -98,10 +103,9 @@ public class IssueCardServiceImpl implements IssueCardService {
         return String.valueOf(pin);
     }
 
-//    private String hashPin(String pin) {
-//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//        return passwordEncoder.encode(pin);
-//    }
+    private String hashPin(String pin) {
+        return passwordEncoder.encode(pin); 
+    }
 
     private IssueCardResponseDTO mapToResponseDTO(Card card) {
         IssueCardResponseDTO response = new IssueCardResponseDTO();

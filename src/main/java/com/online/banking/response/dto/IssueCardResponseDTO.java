@@ -14,7 +14,6 @@ public class IssueCardResponseDTO {
     private Long cardId;
     private Long accountId;
     private String cardNumber;
-    private String pin;
     private CardType cardType;
     private CardStatus status;
     private BigDecimal limitAmount;

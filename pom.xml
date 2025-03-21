@@ -93,11 +93,11 @@
 </dependency>
 
  		<!-- this is pin encoder-->
-		<!--	<dependency>
+			<dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-security</artifactId>
 </dependency>
--->
+
 
 <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
 <dependency>

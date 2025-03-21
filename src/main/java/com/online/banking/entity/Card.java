@@ -34,7 +34,7 @@ public class Card implements Serializable{
     @Column(name = "card_type", nullable = false)
     private CardType cardType; // Debit or Credit
 
-    @Column(name = "pin", length = 4, nullable = false)
+    @Column(name = "pin", length = 250, nullable = false)
     private String pin; // 4-digit PIN
 
     @Column(name = "expiry_date", nullable = false)
