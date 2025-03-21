@@ -55,7 +55,8 @@ public class BankServiceImpl implements BankService {
         bank.setIsDeleted(bankRequest.getIsDeleted() != null ? bankRequest.getIsDeleted() : false);
         bank.setRegistrationDate(LocalDate.now());
         bank.setLastUpdatedDate(LocalDate.now());
-        bank.getPincodeId(); 
+       // bank.getPincodeId(); 
+        bank.setPincodeId(bankRequest.getPincodeId());
         bankRepository.save(bank);
         logger.info("Bank account created for userId: {}", bank.getUserId());
         return modelMapper.map(bank, BankResponse.class);
@@ -68,7 +69,8 @@ public class BankServiceImpl implements BankService {
             Bank bank = optionalBank.get();
             modelMapper.map(bankRequest, bank);
             bank.setLastUpdatedDate(LocalDate.now());
-            bank.getPincodeId();
+            //bank.getPincodeId();
+            bank.setPincodeId(bankRequest.getPincodeId());
             //bank.getPincode(); 
             bankRepository.save(bank);
             logger.info("Bank account updated for userId: {}", userId);
