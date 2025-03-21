@@ -10,14 +10,12 @@ import java.time.LocalDate;
 @Table(name = "card")
 @Getter
 @Setter
-@NoArgsConstructor
+@NoArgsConstructor  
 @AllArgsConstructor
 @Builder
+
 public class Card implements Serializable{
-	
-    /**
-	 * 
-	 */
+	    
 	private static final long serialVersionUID = -9135924846527852198L;
 
 	@Id
@@ -25,11 +23,11 @@ public class Card implements Serializable{
     @Column(name = "card_id")
     private Long cardId;
 
-    @Column(name = "account_id", nullable = false)
+    @Column(name = "account_id", nullable = true)
     
     private Long accountId; 
 
-    @Column(name = "card_number", unique = true, length = 16, nullable = false)
+    @Column(name = "card_number", unique = true, length = 16, nullable = true)
     private String cardNumber;
 
     @Enumerated(EnumType.STRING)
@@ -51,5 +49,6 @@ public class Card implements Serializable{
 
     @Column(name = "limit_amount", nullable = false)
     private BigDecimal limitAmount;
+    
 }
 

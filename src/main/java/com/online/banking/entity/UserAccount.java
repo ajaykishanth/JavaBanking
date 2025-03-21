@@ -20,10 +20,8 @@ public class UserAccount {
 
     @Column(name = "user_id", nullable = false)
     private Long userId;
-
-    @Column(name = "account_number", length = 20, nullable = false, unique = true)
-    private String accountNumber;
-
+    
+    
     @Column(name = "account_type", length = 50, nullable = false)
     private String accountType;
 

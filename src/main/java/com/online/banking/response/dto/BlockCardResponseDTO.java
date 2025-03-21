@@ -1,6 +1,4 @@
 package com.online.banking.response.dto;
-
-import com.online.banking.entity.CardStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +6,5 @@ import lombok.Setter;
 @Setter
 public class BlockCardResponseDTO {
     private Long cardId;
-    private String cardNumber;
-    private CardStatus status;
+    
 }

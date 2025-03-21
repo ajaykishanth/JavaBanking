@@ -6,4 +6,3 @@ import com.online.banking.response.dto.ActivateCardResponseDTO;
 public interface ActivateCardService {
     ActivateCardResponseDTO activateCard(ActivateCardRequestDTO request);
 }
-
