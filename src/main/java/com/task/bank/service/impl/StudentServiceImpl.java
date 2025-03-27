@@ -55,7 +55,7 @@ public class StudentServiceImpl implements StudentService {
                     rollNo = String.valueOf(rollNoCell.getNumericCellValue());
                 }
             }
-            System.out.println("Extracted student: " + student.getName() + ", RollNo: " + student.getRollno());
+            
             
             // Validate data before proceeding
             if (rollNo != null && !rollNo.isEmpty() && name != null && !name.isEmpty()) {
