@@ -55,8 +55,8 @@ public class StudentServiceImpl implements StudentService {
                     rollNo = String.valueOf(rollNoCell.getNumericCellValue());
                 }
             }
-            	
-            System.out.println("Extracted student: " + name + ", RollNo: " + rollNo);
+            System.out.println("Extracted student: " + student.getName() + ", RollNo: " + student.getRollno());
+            
             // Validate data before proceeding
             if (rollNo != null && !rollNo.isEmpty() && name != null && !name.isEmpty()) {
                 Student student = new Student();
@@ -68,7 +68,7 @@ public class StudentServiceImpl implements StudentService {
                     // Handle invalid number format (if any)
                     continue; // Skip this student if rollNo is not a valid integer
                 }
-                
+           
                 // Check if the student already exists
                 if (!studentRepo.findByRollno(student.getRollno()).isPresent() ) {
                     studentSet.add(student);
