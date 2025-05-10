@@ -1,4 +1,4 @@
-package com.task.bank.repo;
+package com.task.bank.repository;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 import com.task.bank.entity.State;
 
 @Repository
-public interface StateRepo extends JpaRepository<State, Long>{
+public interface StateRepository extends JpaRepository<State, Long>{
 
 
-		Optional<State> findByStateName(String stateName);
-		List<State>	findByCountryCountryName(String countryName);
+		Optional<State> findByStateId(Long stateId);
+		List<State>	findByCountryCountryId(Long countryId);
 }
